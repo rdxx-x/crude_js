@@ -1,0 +1,74 @@
+<%- include ('elementos/encabezado') %>
+
+    <div class="container">
+        <form action="/save" method="post">
+            <div class="row mt-5">
+                <form action="/add" method="post">
+                    <div class="col-md-7">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Boleta</th>
+                                    <th>Nombre</th>
+                                    <th>Grupo</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (data) { %>
+                                    <% for (var i=0; i < data.length; i++){ %>
+                                        <tr>
+                                            <td>
+                                                <%= data[i].boleta %>
+                                            </td>
+                                            <td>
+                                                <%= data[i].nombre %>
+                                            </td>
+                                            <td>
+                                                <%= data[i].grupo %>
+                                            </td>
+                                            <td>
+                                                <%= data[i].telefono %>
+                                            </td>
+                                            <td>
+                                                <%= data[i].correo %>
+                                            </td>
+                                            <td>
+                                                <a href="/delete/<%=data[i].boleta%>"
+                                                    class="btn btn-danger">Eliminar</a>
+                                                <a href="/update/<%=data[i].boleta%>" class="btn btn-info">Editar</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="col-md-5">
+                    <form action="/save" method="post">
+                        <div class="form-group">
+                            <input type="text" name="boleta" placeholder="Boleta" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="nombre" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="grupo" placeholder="Grupo" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="correo" placeholder="Correo" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar alumno</button>
+                    </form>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <%- include ('elementos/pie') %>
